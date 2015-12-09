@@ -1,13 +1,17 @@
 body{
-	background-color: #fda;
+	background-color: #B19292;
 	font-family: Verdana,sans-serif ;
 }
 .header{
-	background-color: #aaa;
+	background-color: #3F2727;
 	overflow: hidden;
+	height: 80px;
+	color:#b19292;
 }
-.title{
+.header a{
 	font-size: 24px;
+	text-decoration: none;
+	color:#b19292;
 }
 .menu{
 	margin: 0 10px 0 0;
@@ -15,10 +19,12 @@ body{
 }
 .menu a{
 	margin-right: 20px;
+	font-size: 14px;
+	text-decoration: underline;
 }
 h2{
 	text-transform: uppercase;
-	color: #677
+	color: #372424
 }
 .content{
 	width: 900px;
@@ -26,10 +32,12 @@ h2{
 }
 .comment{
 			
-	background-color: #cdc;
+	background-color: #B18181;
 }
 .comment p{
 	padding-left: 10px;
+	text-align: left;
+	word-wrap: break-word;
 }
 textarea{
 	width:100%;

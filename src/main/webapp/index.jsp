@@ -15,7 +15,7 @@
 			<a href="signIn.jsp">Вход</a><a href="signUp.jsp">Регистрация</a>
 		</c:if>
 		 <c:if test="${not empty username}">
-			<div>Hello, <c:out value="${username}"/>! <a href="signOut">Выход</a></div>
+			<div>Привет, <c:out value="${username}"/>! <a href="signOut">Выход</a></div>
 		</c:if> 
 		</div>
 	</div>

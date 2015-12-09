@@ -2,28 +2,28 @@ package model;
 
 import java.util.List;
 
-import database.BasicDB;
+import database.DBService;
 import database.DBException;
 
 public class MessageManager {
+
 	public List<Message> getMessages(){
 		List<Message> result=null;
 		try {
-			result =BasicDB.getDBMessage().getMessageList();
+			result =DBService.getDBMessage().getMessageList();
 		} 
 		catch (DBException e) {
-			e.printStackTrace();
+			return null;
 		}
 		return result;
 	}
 	
 	public boolean addMessage(Message message){
 		try{
-			BasicDB.getDBMessage().addMessage(message);
+			DBService.getDBMessage().addMessage(message);
 			return true;
 		}
 		catch (DBException e){
-			e.printStackTrace();
 			return false;
 		}
 	}

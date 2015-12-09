@@ -22,8 +22,7 @@ public class IndexServlet extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		
 		HttpSession session=req.getSession(true);
-		String username;
-		username=(String) session.getAttribute("username");
+		String username=(String) session.getAttribute("username");
 		if(username!=null){
 			req.setAttribute("username", username);
 		}
@@ -33,12 +32,4 @@ public class IndexServlet extends HttpServlet {
 		dispatcher.forward(req, resp);
 
 	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		doGet(req, resp);
-	}
-
-	
 }

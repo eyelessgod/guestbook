@@ -20,13 +20,13 @@ public class SignUpServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String login=req.getParameter("login");
 		String password=req.getParameter("password");
-		RequestDispatcher dispatcher;
+		RequestDispatcher dispatcher=null;
 		UserManager userManager=new UserManager();
 		int addUserResult=userManager.addUser(UserManager.createUser(login, password));
 		HttpSession session=req.getSession();
 		if(addUserResult==UserManager.UM_SUCCESS){	
 			session.setAttribute("username", login);
-			dispatcher=req.getRequestDispatcher("index.jsp");
+			resp.sendRedirect("index");
 		}
 		else if(addUserResult==UserManager.UM_INVALID_USERNAME){
 			req.setAttribute("errorMessage", "Пользователь "+login+"уже существует!");
@@ -37,7 +37,7 @@ public class SignUpServlet extends HttpServlet{
 			dispatcher=req.getRequestDispatcher("signUp.jsp");
 		}
 		
-		dispatcher.forward(req, resp);
+		if(dispatcher!=null) dispatcher.forward(req, resp);
 	}
 	
 	

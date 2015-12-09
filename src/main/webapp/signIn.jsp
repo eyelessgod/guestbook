@@ -15,6 +15,7 @@
 		</div>
 	</div>
 	<div class="content">
+		<h2>Вход</h2>
 		<form action="signIn" method="post">
 			<div>Имя:</div><input type="text" name="login" />
 			<div>Пароль:</div><input type="password" name="password">

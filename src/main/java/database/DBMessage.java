@@ -17,10 +17,10 @@ public class DBMessage {
 		Statement statement=null;
 		
 		try{
-			connection=BasicDB.getDBConnection();
+			connection=DBService.getDBConnection();
 			statement=connection.createStatement();
 			List<Message> messages=new ArrayList<Message>();
-			ResultSet result=statement.executeQuery("select author,content from messages");
+			ResultSet result=statement.executeQuery("select author,content from messages order by post_date desc");
 						
 			while(result.next()){
 				String author=result.getString(1);
@@ -29,7 +29,7 @@ public class DBMessage {
 			}
 			return messages;	
 		}
-		catch(Exception e){
+		catch(SQLException e){
 			throw new DBException(e);
 		}
 		finally{
@@ -54,15 +54,15 @@ public class DBMessage {
 		PreparedStatement statement=null;
 		
 		try{
-			connection=BasicDB.getDBConnection();
-			statement=connection.prepareStatement("insert into messages(author,content) values(?,?)");
+			connection=DBService.getDBConnection();
+			statement=connection.prepareStatement("insert into messages(author,content,post_date) values(?,?,now())");
 			statement.setString(1, message.getUsername());
 			statement.setString(2, message.getContent());
 			statement.executeUpdate();
 			
 				
 		}
-		catch(Exception e){
+		catch(SQLException e){
 			throw new DBException(e);
 		}
 		finally{

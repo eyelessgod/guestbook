@@ -1,9 +1,10 @@
 package model;
 
-import database.BasicDB;
+import database.DBService;
 import database.DBException;
 
 public class UserManager {
+	
 	public static final int UM_SUCCESS=0;
 	public static final int UM_INVALID_USERNAME=1;
 	public static final int UM_INVALID_PASSWORD=2;
@@ -11,7 +12,7 @@ public class UserManager {
 	
 	public int validate(String login, String password){
 		try{
-			User user=BasicDB.getDBUser().getUser(login);
+			User user=DBService.getDBUser().getUser(login);
 			if(user!=null){
 				if(user.getPassword().equals(password)){
 					return UM_SUCCESS;
@@ -26,13 +27,11 @@ public class UserManager {
 		}
 		catch(DBException e){
 			return UM_DBERROR;
-		}
-		
-		
+		}		
 	}
 	private boolean userIsExist(String login) throws DBException{
 		try{
-			if(BasicDB.getDBUser().getUser(login)!=null){
+			if(DBService.getDBUser().getUser(login)!=null){
 				return true;
 			}
 			else{
@@ -40,7 +39,6 @@ public class UserManager {
 			}	
 		}
 		catch(DBException e){
-			e.printStackTrace();
 			throw new DBException(e);
 		}
 	}
@@ -51,15 +49,14 @@ public class UserManager {
 				return UM_INVALID_USERNAME;
 			}
 			else{
-				BasicDB.getDBUser().addUser(user);
+				DBService.getDBUser().addUser(user);
 				return UM_SUCCESS;
 			}
 		}
 		catch (DBException e) {
 			e.printStackTrace();
 			return UM_DBERROR;
-		}
-		
+		}		
 	}
 	public static User createUser(String name,String password){
 		return new User(name,password);

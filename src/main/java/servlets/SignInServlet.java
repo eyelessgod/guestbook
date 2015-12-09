@@ -28,13 +28,13 @@ public class SignInServlet extends HttpServlet {
 		
 		String login=(String) req.getParameter("login");
 		String password=(String)req.getParameter("password");
-		RequestDispatcher dispatcher;
+		RequestDispatcher dispatcher=null;
 		UserManager userManager=new UserManager();
 		int validationResult=userManager.validate(login, password);
 		if(validationResult==UserManager.UM_SUCCESS){
 			HttpSession session=req.getSession();
 			session.setAttribute("username", login);
-			dispatcher=req.getRequestDispatcher("index");
+			resp.sendRedirect("index");
 		}
 		else if(validationResult==UserManager.UM_INVALID_USERNAME){
 			req.setAttribute("errorMessage", "Пользователь "+login+" не найден!");
@@ -48,7 +48,8 @@ public class SignInServlet extends HttpServlet {
 			req.setAttribute("errorMessage", "Непредвиденная ошибка");
 			dispatcher=req.getRequestDispatcher("signIn.jsp");
 		}
-		dispatcher.forward(req, resp);
+		if(dispatcher != null)
+				dispatcher.forward(req, resp);
 		
 	}
 	
