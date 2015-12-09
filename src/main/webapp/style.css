@@ -1,0 +1,37 @@
+body{
+	background-color: #fda;
+	font-family: Verdana,sans-serif ;
+}
+.header{
+	background-color: #aaa;
+	overflow: hidden;
+}
+.title{
+	font-size: 24px;
+}
+.menu{
+	margin: 0 10px 0 0;
+	float: right;
+}
+.menu a{
+	margin-right: 20px;
+}
+h2{
+	text-transform: uppercase;
+	color: #677
+}
+.content{
+	width: 900px;
+	margin: 0 auto;
+}
+.comment{
+			
+	background-color: #cdc;
+}
+.comment p{
+	padding-left: 10px;
+}
+textarea{
+	width:100%;
+	resize: vertical;
+}
